@@ -18,7 +18,7 @@ npm install @vue/cli -g
   - Under that folder form command prompt / bash laucn vue-cli, choose typescript as language.
 
 ```bash
-vue init webpack my-app
+vue create my-app
 ```
 - Let's choose the following options
 
