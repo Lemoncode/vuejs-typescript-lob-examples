@@ -56,6 +56,99 @@ new Vue({
 }).$mount('#app');
 ```
 
-- Now let's jump into the _Home.vue_ view and add a material ui table.
+- In our _app.vue_ file we need to surround our app in _v-app_ tags.
 
-_./src/ _
+- Let's create component that will display _users-table_ (just define some harcoded data 
+and make use of vuetify _v-data-table_)
+
+_./src/components/users-table.vue_
+
+```typescript
+<template>
+    <v-data-table
+      :headers="headers"
+      :items="users"
+    >
+      <template slot="items" slot-scope="props">
+        <td class="text-xs-left">{{props.item.id}}</td>
+        <td class="text-xs-left">{{props.item.name}}</td>
+        <td class="text-xs-left">{{props.item.username}}</td>
+        <td class="text-xs-left">{{props.item.email}}</td>
+      </template>
+    </v-data-table>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({
+  components: {
+  },
+})
+export default class UsersTable extends Vue {
+  public headers = [
+    {
+    text: 'Id',
+    aligh: 'right',
+    value: 'id',
+    },
+    {
+    text: 'Name',
+    aligh: 'right',
+    value: 'id',
+    },
+    {
+    text: 'User name',
+    aligh: 'right',
+    value: 'id',
+    },
+    {
+    text: 'EMail',
+    aligh: 'right',
+    value: 'id',
+    },
+  ];
+
+  public users = [
+    {
+      id: 1,
+      name: 'John Doe',
+      username: 'John',
+      email: 'john@contoso.com',
+    },
+    {
+      id: 2,
+      name: 'Mark Daemon',
+      username: 'Mark',
+      email: 'mark@foo.com',
+    },
+  ];
+}
+</script>
+```
+
+- Now let's jump into the _Home.vue_ view and make use of this component.
+
+_./src/views/Home.vue_
+
+```diff
+<template>
+  <div class="home">
+    <h1>Hello from home page</h1>    
++    <UsersTable/>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
++ import UsersTable from '@/components/users-table.vue';
+
+@Component({
+  components: {
++    UsersTable,
+  },
+})
+export default class Home extends Vue {
+}
+</script>
+```
