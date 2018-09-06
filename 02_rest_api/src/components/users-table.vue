@@ -13,13 +13,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({
-  components: {
+  components: {    
   },
 })
 export default class UsersTable extends Vue {
+  @Prop() users: any[] = [];
+
   public headers = [
     {
     text: 'Id',
@@ -40,21 +42,6 @@ export default class UsersTable extends Vue {
     text: 'EMail',
     align: 'left',
     value: 'id',
-    },
-  ];
-
-  public users = [
-    {
-      id: 1,
-      name: 'John Doe',
-      username: 'John',
-      email: 'john@contoso.com',
-    },
-    {
-      id: 2,
-      name: 'Mark Daemon',
-      username: 'Mark',
-      email: 'mark@foo.com',
     },
   ];
 }
