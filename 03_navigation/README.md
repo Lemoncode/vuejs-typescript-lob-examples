@@ -153,7 +153,6 @@ _./src/components/users-table.vue_
 +  public onEditUser(userId) {
 -    console.log('You clicked on edit user !');
 +    console.log('You clicked on edit user: ', userId);
-
   }
 ```
 
@@ -322,6 +321,12 @@ _./src/components/users-table.vue_
   }
 }
 </script>
+```
+
+- Let's give a try:
+
+```bash
+npm run serve
 ```
 
 

@@ -20,14 +20,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import router from '../router';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class UsersTable extends Vue {
-  @Prop() users!: any[];
+  @Prop() public users!: any[];
 
   public headers = [
     {
