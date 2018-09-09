@@ -21,7 +21,7 @@ _./src/rest-api/index.ts_
 ```javascript
 
 export interface User {
-  id : number;
+  id: number;
   name: string;
   username: string;
   email: string;
@@ -34,14 +34,14 @@ export interface User {
       lat: string;
       lng: string;
     }
-  },
+  };
   phone: string;
   website: string;
   company: {
     name: string;
     catchPhrase: string;
     bs: string;
-  }
+  };
 }
 
 export const createDefaultUser = (): User => ({
