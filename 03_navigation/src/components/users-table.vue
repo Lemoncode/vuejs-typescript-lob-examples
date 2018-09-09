@@ -1,4 +1,4 @@
-<template type="ts">
+<template>
     <v-data-table
       :headers="headers"
       :items="users"
@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import router from '../router';
 
 @Component({
   components: {},

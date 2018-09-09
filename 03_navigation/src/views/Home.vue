@@ -1,7 +1,7 @@
-<template type="ts">
+<template>
   <div class="home">
     <h3>Hello from home page</h3>
-    <UsersTable :users="users" @onEditUser="onEditUser"/>
+    <users-table :users="users" @on-edit-user="onEditUser"/>
   </div>
 </template>
 
