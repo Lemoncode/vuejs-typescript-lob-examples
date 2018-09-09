@@ -38,22 +38,23 @@ export default class UsersTable extends Vue {
     {
       text: 'Name',
       align: 'left',
-      value: 'id',
+      value: 'name',
     },
     {
       text: 'User name',
       align: 'left',
-      value: 'id',
+      value: 'username',
     },
     {
       text: 'EMail',
       align: 'left',
-      value: 'id',
+      value: 'email',
     },
     {
       text: 'Actions',
-      align: 'left',
-      value: 'Actions',
+      align: 'center',
+      sortable: false,
+      value: 'id',
     },
   ];
 
