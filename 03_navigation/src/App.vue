@@ -1,4 +1,4 @@
-<template type="ts">
+<template>
   <v-app>
     <div id="app">
       <div id="nav">
