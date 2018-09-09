@@ -181,12 +181,18 @@ _./src/components/user-form.vue_
 +        v-model="user.name"
 +        label="Name"
 +        />
++    <v-text-field
++        v-model="user.username"
++        label="Nickname"
++        />
++    <v-text-field
++        v-model="user.email"
++        label="EMail"
++        />
 + </form>
 -  </span>
 </template>
 ```
-
-// **** TODO ADD MORE FIELDS !!!
 
 - To check that data is being updated let's implement a fake _save_ button (this
 button will just output through the browser console the data being collected).

@@ -4,6 +4,14 @@
         v-model="user.name"
         label="Name"
         />
+    <v-text-field
+        v-model="user.username"
+        label="Nickname"
+        />
+    <v-text-field
+        v-model="user.email"
+        label="EMail"
+        />
  </form>
 </template>
 
