@@ -197,5 +197,42 @@ _./src/components/user-form.vue_
 - To check that data is being updated let's implement a fake _save_ button (this
 button will just output through the browser console the data being collected).
 
+- First let's implement the save method.
+
+```diff
+export default class UserForm extends Vue {
+  @Prop() public user!: User;
+
++  public save() {
++    console.log(this.user);
++  }
+}
+```
+
+- Now add the button to the form.
+
+```diff
+ <form>
+    <v-text-field
+        v-model="user.name"
+        label="Name"
+        />
+    <v-text-field
+        v-model="user.username"
+        label="Nickname"
+        />
+    <v-text-field
+        v-model="user.email"
+        label="EMail"
+        />
++      <v-btn
++        @click="submit"
++      >
++        save
++      </v-btn>
+    
+ </form>
+```
+
 - So far so good, we have implemented a basic form, in the next sample we will jump
 into a more interesting topic: form validation.

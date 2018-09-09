@@ -12,6 +12,11 @@
         v-model="user.email"
         label="EMail"
         />
+    <v-btn
+      @click="submit"
+    >
+      save
+    </v-btn>
  </form>
 </template>
 
@@ -25,5 +30,11 @@ import { User } from '@/rest-api';
 })
 export default class UserForm extends Vue {
   @Prop() public user!: User;
+
+  public save() {
+    console.log(this.user);
+  }
+
+
 }
 </script>
