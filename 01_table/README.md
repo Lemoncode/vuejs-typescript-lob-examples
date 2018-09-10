@@ -39,12 +39,12 @@ _./src/main.ts_
 
 ```diff
 import Vue from 'vue';
-+ import Vuetify from 'vuetify'
++ import Vuetify from 'vuetify';
 import App from './App.vue';
 import router from './router';
 
 + // tslint:disable-next-line:no-var-requires
-+ require('../node_modules/vuetify/dist/vuetify.min.css')
++ require('../node_modules/vuetify/dist/vuetify.min.css');
 
 Vue.config.productionTip = false;
 
@@ -61,21 +61,21 @@ _./src/App.vue_
 
 ```diff
 <template>
+  <div id="app">
 +  <v-app>
-    <div id="app">
       <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
       </div>
       <router-view/>
-    </div>
 +  </v-app>
+  </div>
 </template>
 ```
 - Let's create component that will display _users-table_ (just define some harcoded data 
 and make use of vuetify _v-data-table_)
 
-_./src/components/users-table.vue_
+_./src/components/UsersTable.vue_
 
 ```typescript
 <template>
@@ -95,31 +95,24 @@ _./src/components/users-table.vue_
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-  },
-})
+@Component
 export default class UsersTable extends Vue {
   public headers = [
     {
-    text: 'Id',
-    aligh: 'right',
-    value: 'id',
+      text: 'Id',
+      value: 'id',
     },
     {
-    text: 'Name',
-    aligh: 'right',
-    value: 'id',
+      text: 'Name',
+      value: 'name',
     },
     {
-    text: 'User name',
-    aligh: 'right',
-    value: 'id',
+      text: 'User name',
+      value: 'username',
     },
     {
-    text: 'EMail',
-    aligh: 'right',
-    value: 'id',
+      text: 'EMail',
+      value: 'email',
     },
   ];
 
@@ -149,19 +142,19 @@ _./src/views/Home.vue_
 <template>
   <div class="home">
     <h3>Hello from home page</h3>   
-+   <UsersTable/>     
++   <users-table />     
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-+ import UsersTable from '@/components/users-table.vue';
++ import UsersTable from '@/components/UsersTable.vue';
 
-@Component({
-  components: {
-+    UsersTable,
-  },
-})
++ @Component({
++   components: {
++     UsersTable,
++   },
++ })
 export default class Home extends Vue {}
 </script>
 ```
