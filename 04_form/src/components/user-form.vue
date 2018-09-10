@@ -13,7 +13,7 @@
         label="EMail"
         />
     <v-btn
-      @click="save"
+      @click="onSave"
     >
       save
     </v-btn>
@@ -39,12 +39,8 @@ export default class UserForm extends Vue {
   }
 
 
-  public save() {
-    console.log('**** Save operation');
-    console.log(JSON.stringify(this.editingUser));
-    console.log('****');
+  public onSave() {
+    this.$emit('onSave', this.editingUser);
   }
-
-
 }
 </script>

@@ -1,7 +1,7 @@
 <template type="ts">
   <div class="home">
     {{user.name}}
-    <UserForm :user="user"/>
+    <UserForm :user="user" @onSave="onSave"/>
   </div>
 </template>
 
@@ -24,5 +24,14 @@ export default class EditUser extends Vue {
       this.user = user;
     });
   }
+
+  public onSave(editingUser: User)  {
+    this.user = editingUser;
+
+    console.log('**** Save operation');
+    console.log(JSON.stringify(this.user));
+    console.log('****');
+  }
+
 }
 </script>

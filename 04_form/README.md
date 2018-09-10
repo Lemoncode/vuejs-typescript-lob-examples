@@ -213,10 +213,7 @@ export default class UserForm extends Vue {
 +  }
 
 }
-
 ```
-
-
 
 - It's time to build a form that will let us view and edit the _User_ entity data,
 to bind the data we will make use of _v-model_ (two way binding).
@@ -250,11 +247,13 @@ button will just output through the browser console the data being collected).
 
 - First let's implement the save method.
 
+_./src/components/user-form.vue_
+
 ```diff
 export default class UserForm extends Vue {
   @Prop() public user!: User;
 
-+  public save() {
++  public onSave() {
 +    console.log('**** Save operation');
 +    console.log(JSON.stringify(editingUser.user));
 +    console.log('****');
@@ -263,6 +262,8 @@ export default class UserForm extends Vue {
 ```
 
 - Now add the button to the form.
+
+_./src/components/user-form.vue_
 
 ```diff
  <form>
@@ -279,7 +280,7 @@ export default class UserForm extends Vue {
         label="EMail"
         />
 +      <v-btn
-+        @click="save"
++        @click="onSave"
 +      >
 +        save
 +      </v-btn>
@@ -287,6 +288,70 @@ export default class UserForm extends Vue {
  </form>
 ```
 
+- Just to wrap up let's move the save method to the page container.
 
-- So far so good, we have implemented a basic form, in the next sample we will jump
-into a more interesting topic: form validation.
+_./src/views/EditUser.vue_
+
+```diff
+export default class EditUser extends Vue {
+  @Prop() public id!: string;
+  public user = createDefaultUser();
+
+  public created() {
+    fetchUser(+this.id).then((user) => {
+      this.user = user;
+    });
+  }
+
++  public onEditUser(editingUser: User)  {
++    this.user = editingUser;
++
++    console.log('**** Save operation');
++    console.log(JSON.stringify(this.user));
++    console.log('****');
++  }
+
+}
+```
+
+- Pass it down to the form component.
+
+_./src/views/EditUser.vue_
+
+```diff
+<template type="ts">
+  <div class="home">
+    {{user.name}}
+-    <UserForm :user="user"/>
++    <UserForm :user="user" @save="onSave"/>
+  </div>
+</template>
+```
+
+- Let's call from the onSave child method the associated parent callback
+_onSave_ callback.
+
+_./src/components/user-form.vue_
+
+```diff
+export default class UserForm extends Vue {
+  @Prop() public user!: User;
+
+  public editingUser: User = createDefaultUser();
+
+  @Watch("user")
+  doUserWatch(newVal: User, oldVal: User) {
+    this.editingUser = _.cloneDeep(newVal);
+  }
+
+
+  public onSave() {
+-    console.log('**** Save operation');
+-    console.log(JSON.stringify(this.editingUser));
+-    console.log('****');
++    this.$emit('onSave', this.editingUser);
+  }
+}
+```
+
+- So far so good, we have implemented a basic form, in the next sample we will implemnent this using callbacks (one way data flow).
