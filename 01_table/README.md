@@ -155,7 +155,7 @@ _./src/views/Home.vue_
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-+ import UsersTable from '@/components/users-table.vue';
++ import UsersTable from '@/components/UsersTable.vue';
 
 @Component({
   components: {
