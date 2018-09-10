@@ -103,22 +103,22 @@ export default class UsersTable extends Vue {
   public headers = [
     {
     text: 'Id',
-    aligh: 'right',
+    align: 'right',
     value: 'id',
     },
     {
     text: 'Name',
-    aligh: 'right',
+    align: 'right',
     value: 'name',
     },
     {
     text: 'User name',
-    aligh: 'right',
+    align: 'right',
     value: 'username',
     },
     {
     text: 'EMail',
-    aligh: 'right',
+    align: 'right',
     value: 'email',
     },
   ];
