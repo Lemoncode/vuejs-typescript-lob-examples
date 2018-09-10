@@ -95,31 +95,24 @@ _./src/components/UsersTable.vue_
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-  },
-})
+@Component
 export default class UsersTable extends Vue {
   public headers = [
     {
-    text: 'Id',
-    align: 'right',
-    value: 'id',
+      text: 'Id',
+      value: 'id',
     },
     {
-    text: 'Name',
-    align: 'right',
-    value: 'name',
+      text: 'Name',
+      value: 'name',
     },
     {
-    text: 'User name',
-    align: 'right',
-    value: 'username',
+      text: 'User name',
+      value: 'username',
     },
     {
-    text: 'EMail',
-    align: 'right',
-    value: 'email',
+      text: 'EMail',
+      value: 'email',
     },
   ];
 
@@ -149,7 +142,7 @@ _./src/views/Home.vue_
 <template>
   <div class="home">
     <h3>Hello from home page</h3>   
-+   <users-table/>     
++   <users-table />     
   </div>
 </template>
 
@@ -157,11 +150,11 @@ _./src/views/Home.vue_
 import { Component, Vue } from 'vue-property-decorator';
 + import UsersTable from '@/components/UsersTable.vue';
 
-@Component({
-  components: {
-+    UsersTable,
-  },
-})
++ @Component({
++   components: {
++     UsersTable,
++   },
++ })
 export default class Home extends Vue {}
 </script>
 ```
