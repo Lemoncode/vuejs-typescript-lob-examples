@@ -48,9 +48,9 @@ npm run serve
 
 - Time to remove boiler plate code, and keep something minimum.
 
-- Let's remove the _HelloWorld.vue_ file`, located in _./src/components/HelloWorld.vue_.
+- Let's remove the _HelloWorld.vue_ file, located in _./src/components/HelloWorld.vue_.
 
-- Now let's remove the refrence to this component in the _Home.vue_ page.
+- Now let's remove the reference to this component in the _Home.vue_ page.
 
 _./src/views/Home.vue_
 
@@ -67,11 +67,11 @@ _./src/views/Home.vue_
 import { Component, Vue } from 'vue-property-decorator';
 - import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
-@Component({
-  components: {
--    HelloWorld,
-  },
-})
+- @Component({
+-   components: {
+-     HelloWorld,
+-   },
+- })
 export default class Home extends Vue {}
 </script>
 ```
