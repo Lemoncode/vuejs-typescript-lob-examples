@@ -1,5 +1,6 @@
 <template type="ts">
   <div class="home">
+    {{user.name}}
     <UserForm :user="user"/>
   </div>
 </template>

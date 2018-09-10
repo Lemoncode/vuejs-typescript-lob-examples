@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import EditUser from './views/EditUser.vue';
 
 Vue.use(Router);
 
@@ -23,7 +24,7 @@ export default new Router({
       path: '/user/:id',
       props: true,
       name: 'user',
-      component: () => import(/* webpackChunkName: "editUser" */ './views/EditUser.vue'),
+      component: EditUser,
     },
   ],
 });

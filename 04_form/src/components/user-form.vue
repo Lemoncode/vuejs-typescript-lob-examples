@@ -1,19 +1,19 @@
 <template type="ts">
  <form>
     <v-text-field
-        v-model="user.name"
+        v-model="editingUser.name"
         label="Name"
         />
     <v-text-field
-        v-model="user.username"
+        v-model="editingUser.username"
         label="Nickname"
         />
     <v-text-field
-        v-model="user.email"
+        v-model="editingUser.email"
         label="EMail"
         />
     <v-btn
-      @click="submit"
+      @click="save"
     >
       save
     </v-btn>
@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { User } from '@/rest-api';
-
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { User, createDefaultUser } from '@/rest-api';
+import _ from 'lodash';
 
 @Component({
   components: {},
@@ -31,8 +31,18 @@ import { User } from '@/rest-api';
 export default class UserForm extends Vue {
   @Prop() public user!: User;
 
+  public editingUser: User = createDefaultUser();
+
+  @Watch("user")
+  doUserWatch(newVal: User, oldVal: User) {
+    this.editingUser = _.cloneDeep(newVal);
+  }
+
+
   public save() {
-    console.log(this.user);
+    console.log('**** Save operation');
+    console.log(JSON.stringify(this.editingUser));
+    console.log('****');
   }
 
 

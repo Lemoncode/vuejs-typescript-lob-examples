@@ -167,6 +167,57 @@ export default class EditUser extends Vue {
 </script>
 ```
 
+- In this sample we are going to use _v-model_ (binding two way), a property
+should flow only top to down, if we work binding two way the _user_ property
+it will update as well the container user member variable, that's ot a good practice, in this sample we are going to:
+
+- Create a _editingUser_ member variable (local to this component).
+
+- Watch for the _user_ property to change.
+
+- Whenever the _user_ parent property changes, deep clone the object and dump
+it into _editingUser_ variable.
+
+Let's install lodash helper library (you could install just deep clone from
+lodash).
+
+```bash
+npm install lodash --save
+```
+
+
+```bash
+npm install @types/lodash --save-dev
+```
+
+Let's add the _editingUser_ variable and add a watch for the prop.
+_./src/components/user-form.vue_
+
+```diff
+import { Component, Vue, Prop } from 'vue-property-decorator';
+- import { User } from '@/rest-api';
++ import { User, createDefaultUser } from '@/rest-api';
++ import _ from 'lodash';
+
+@Component({
+  components: {},
+})
+
+export default class UserForm extends Vue {
+  @Prop() public user!: User;
++ public editingUser: User = createDefaultUser();
+
++  @Watch("user")
++  doUserWatch(newVal: User, oldVal: User) {
++    this.editingUser = _.CloneDeep(newVal);
++  }
+
+}
+
+```
+
+
+
 - It's time to build a form that will let us view and edit the _User_ entity data,
 to bind the data we will make use of _v-model_ (two way binding).
 
@@ -178,15 +229,15 @@ _./src/components/user-form.vue_
 -  Temporary check: {{user}}
 + <form>
 +    <v-text-field
-+        v-model="user.name"
++        v-model="editingUser.name"
 +        label="Name"
 +        />
 +    <v-text-field
-+        v-model="user.username"
++        v-model="editingUser.username"
 +        label="Nickname"
 +        />
 +    <v-text-field
-+        v-model="user.email"
++        v-model="editingUser.email"
 +        label="EMail"
 +        />
 + </form>
@@ -204,7 +255,9 @@ export default class UserForm extends Vue {
   @Prop() public user!: User;
 
 +  public save() {
-+    console.log(this.user);
++    console.log('**** Save operation');
++    console.log(JSON.stringify(editingUser.user));
++    console.log('****');
 +  }
 }
 ```
@@ -226,16 +279,13 @@ export default class UserForm extends Vue {
         label="EMail"
         />
 +      <v-btn
-+        @click="submit"
++        @click="save"
 +      >
 +        save
 +      </v-btn>
     
  </form>
 ```
-
-- And let's implement a method that will just simulate the _submit_ operation (just console.log).
-
 
 
 - So far so good, we have implemented a basic form, in the next sample we will jump
