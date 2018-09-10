@@ -109,17 +109,17 @@ export default class UsersTable extends Vue {
     {
     text: 'Name',
     aligh: 'right',
-    value: 'id',
+    value: 'name',
     },
     {
     text: 'User name',
     aligh: 'right',
-    value: 'id',
+    value: 'username',
     },
     {
     text: 'EMail',
     aligh: 'right',
-    value: 'id',
+    value: 'email',
     },
   ];
 
