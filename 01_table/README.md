@@ -39,12 +39,12 @@ _./src/main.ts_
 
 ```diff
 import Vue from 'vue';
-+ import Vuetify from 'vuetify'
++ import Vuetify from 'vuetify';
 import App from './App.vue';
 import router from './router';
 
 + // tslint:disable-next-line:no-var-requires
-+ require('../node_modules/vuetify/dist/vuetify.min.css')
++ require('../node_modules/vuetify/dist/vuetify.min.css');
 
 Vue.config.productionTip = false;
 
@@ -61,15 +61,15 @@ _./src/App.vue_
 
 ```diff
 <template>
+  <div id="app">
 +  <v-app>
-    <div id="app">
       <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
       </div>
       <router-view/>
-    </div>
 +  </v-app>
+  </div>
 </template>
 ```
 - Let's create component that will display _users-table_ (just define some harcoded data 
