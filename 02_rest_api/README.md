@@ -30,16 +30,15 @@ export const fetchUsers = (): Promise<[]> => {
 };
 ```
 
-- Now we use our _Home_ page as a container (will do the ajax call and store it as data), then we will pass it down as prop 
-to the _users-table_ component.
+- Now we use our _Home_ page as a container (will do the ajax call and store it as data), then we will pass it down as prop to the _users-table_ component.
 
 _./src/views/Home.vue_
 
 ```diff
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import UsersTable from '@/components/users-table.vue';
-+ import {fetchUsers} from '@/rest-api';
+import UsersTable from '@/components/UsersTable.vue';
++ import { fetchUsers } from '@/rest-api';
 
 @Component({
   components: {
@@ -60,22 +59,21 @@ export default class Home extends Vue {
 
 - Now it's time to pass down users as a prop to the users table. Let's import the property decorator.
 
-_./src/components/users-table.vue_
+_./src/components/UsersTable.vue_
 
 ```diff
 <script lang="ts">
 - import { Component, Vue } from 'vue-property-decorator';
 + import { Component, Vue, Prop } from 'vue-property-decorator';
-import {fetchUsers} from '@/rest-api';
 ```
 
 - Let's add the users member variable as a prop, and remove the old _users_ local variable.
 
-_./src/components/users-table.vue_
+_./src/components/UsersTable.vue_
 
 ```diff
-export default class UsersTable extends UsersTableProps {
-+  @Prop() users: any[] = [];
+export default class UsersTable extends Vue {
++  @Prop() public users!: any[];
 
 //...
 -  public users = [
@@ -99,11 +97,11 @@ export default class UsersTable extends UsersTableProps {
 _./src/views/Home.vue_
 
 ```diff
-<template type="ts">
+<template>
   <div class="home">
     <h3>Hello from home page</h3>
--    <UsersTable />
-+    <UsersTable :users="users"/>    
+-    <users-table />
++    <users-table :users="users" />
   </div>
 </template>
 ```
