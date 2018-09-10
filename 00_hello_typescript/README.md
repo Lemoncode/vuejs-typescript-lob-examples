@@ -31,8 +31,14 @@ vue create my-app
 ![step 1](readme/step1.png)
 
   - Step 2 (set of questions)
-
-![step 2](readme/step1.png)
+    - Use class-style component syntax? Yes
+    - Use Babel alongside TypeScript for auto-detected polyfills? Yes
+    - Use history mode for router? Yes
+    - Pick a linter / formatter config: TSLint
+    - Pick additional lint features: Lint on save
+    - Pick a unit testing solution: Jest
+    - Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In dedicated config files
+    - Save this as a preset for future projects? No
 
 - Now that we have the app, let's run it
 
