@@ -234,5 +234,9 @@ export default class UserForm extends Vue {
  </form>
 ```
 
+- And let's implement a method that will just simulate the _submit_ operation (just console.log).
+
+
+
 - So far so good, we have implemented a basic form, in the next sample we will jump
 into a more interesting topic: form validation.
