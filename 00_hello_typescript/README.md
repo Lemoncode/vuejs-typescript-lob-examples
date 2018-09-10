@@ -31,8 +31,14 @@ vue create my-app
 ![step 1](readme/step1.png)
 
   - Step 2 (set of questions)
-
-![step 2](readme/step1.png)
+    - Use class-style component syntax? Yes
+    - Use Babel alongside TypeScript for auto-detected polyfills? Yes
+    - Use history mode for router? Yes
+    - Pick a linter / formatter config: TSLint
+    - Pick additional lint features: Lint on save
+    - Pick a unit testing solution: Jest
+    - Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In dedicated config files
+    - Save this as a preset for future projects? No
 
 - Now that we have the app, let's run it
 
@@ -42,9 +48,9 @@ npm run serve
 
 - Time to remove boiler plate code, and keep something minimum.
 
-- Let's remove the _HelloWorld.vue_ file`, located in _./src/components/HelloWorld.vue_.
+- Let's remove the _HelloWorld.vue_ file, located in _./src/components/HelloWorld.vue_.
 
-- Now let's remove the refrence to this component in the _Home.vue_ page.
+- Now let's remove the reference to this component in the _Home.vue_ page.
 
 _./src/views/Home.vue_
 
@@ -61,11 +67,11 @@ _./src/views/Home.vue_
 import { Component, Vue } from 'vue-property-decorator';
 - import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
-@Component({
-  components: {
--    HelloWorld,
-  },
-})
+- @Component({
+-   components: {
+-     HelloWorld,
+-   },
+- })
 export default class Home extends Vue {}
 </script>
 ```
