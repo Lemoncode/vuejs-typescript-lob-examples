@@ -75,7 +75,7 @@ _./src/App.vue_
 - Let's create component that will display _users-table_ (just define some harcoded data 
 and make use of vuetify _v-data-table_)
 
-_./src/components/users-table.vue_
+_./src/components/UsersTable.vue_
 
 ```typescript
 <template>
