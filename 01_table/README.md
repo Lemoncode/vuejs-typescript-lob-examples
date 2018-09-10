@@ -149,7 +149,7 @@ _./src/views/Home.vue_
 <template>
   <div class="home">
     <h3>Hello from home page</h3>   
-+   <UsersTable/>     
++   <users-table/>     
   </div>
 </template>
 
