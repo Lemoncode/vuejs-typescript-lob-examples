@@ -1,4 +1,4 @@
-<template type="ts">
+<template>
     <v-data-table
       :headers="headers"
       :items="users"
@@ -15,35 +15,27 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-@Component({
-  components: {    
-  },
-})
+@Component
 export default class UsersTable extends Vue {
-  @Prop() users: any[] = [];
+  @Prop() public users!: any[];
 
   public headers = [
     {
-    text: 'Id',
-    align: 'left',
-    value: 'id',
+      text: 'Id',
+      value: 'id',
     },
     {
-    text: 'Name',
-    align: 'left',
-    value: 'id',
+      text: 'Name',
+      value: 'name',
     },
     {
-    text: 'User name',
-    align: 'left',
-    value: 'id',
+      text: 'User name',
+      value: 'username',
     },
     {
-    text: 'EMail',
-    align: 'left',
-    value: 'id',
+      text: 'EMail',
+      value: 'email',
     },
   ];
 }
 </script>
-
