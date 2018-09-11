@@ -1,15 +1,15 @@
-<template type="ts">
+<template>
  <form>
     <v-text-field
-        v-model="editingUser.name"
-        label="Name"
-        />
+      label="Name"
+      v-model="value.name"
+    />
     <v-text-field
-        v-model="editingUser.username"
+        v-model="value.username"
         label="Nickname"
         />
     <v-text-field
-        v-model="editingUser.email"
+      v-model="value.email"
         label="EMail"
         />
     <v-btn
@@ -25,22 +25,12 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { User, createDefaultUser } from '@/rest-api';
 import _ from 'lodash';
 
-@Component({
-  components: {},
-})
+@Component
 export default class UserForm extends Vue {
-  @Prop() public user!: User;
+  @Prop() public value!: any
 
-  public editingUser: User = createDefaultUser();
-
-  @Watch("user")
-  doUserWatch(newVal: User, oldVal: User) {
-    this.editingUser = _.cloneDeep(newVal);
-  }
-
-
-  public onSave() {
-    this.$emit('onSave', this.editingUser);
+  public onSave() {    
+    this.$router.push('/');
   }
 }
 </script>

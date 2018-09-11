@@ -1,7 +1,7 @@
 <template type="ts">
   <div class="home">
     {{user.name}}
-    <UserForm :user="user" @onSave="onSave"/>
+    <UserForm v-model="user" @onSave="onSave"/>
   </div>
 </template>
 
@@ -26,6 +26,7 @@ export default class EditUser extends Vue {
   }
 
   public onSave(editingUser: User)  {
+    console.log(editingUser);
     this.user = editingUser;
 
     console.log('**** Save operation');
