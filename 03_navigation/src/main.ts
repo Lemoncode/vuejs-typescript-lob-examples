@@ -7,7 +7,10 @@ import Vuetify from 'vuetify';
 require('../node_modules/vuetify/dist/vuetify.min.css');
 
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
+Vue.use(Vuetify,
+  {
+    iconfont: 'mdi',
+  });
 
 new Vue({
   router,
