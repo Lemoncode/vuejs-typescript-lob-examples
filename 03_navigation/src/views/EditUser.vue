@@ -1,4 +1,4 @@
-<template type="ts">
+<template>
   <div class="home">
     <h3>Edit user: {{ id }}</h3>
   </div>

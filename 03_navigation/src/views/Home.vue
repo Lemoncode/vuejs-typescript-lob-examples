@@ -1,7 +1,7 @@
-<template type="ts">
+<template>
   <div class="home">
     <h3>Hello from home page</h3>
-    <UsersTable :users="users" @onEditUser="onEditUser"/>
+    <users-table :users="users" @on-edit-user="onEditUser"/>
   </div>
 </template>
 
@@ -9,7 +9,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import UsersTable from '@/components/users-table.vue';
 import { fetchUsers } from '@/rest-api';
-import router from '../router';
 
 @Component({
   components: {
@@ -26,7 +25,7 @@ export default class Home extends Vue {
   }
 
   public onEditUser(userId: number)  {
-    router.push({name: 'user', params: { id: userId.toString() }});
+    this.$router.push({name: 'user', params: { id: userId.toString() }});
   }
 }
 </script>

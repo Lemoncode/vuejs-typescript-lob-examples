@@ -61,22 +61,23 @@ _./src/components/users-table.vue_
     {
     text: 'Name',
     align: 'left',
-    value: 'Name',
+    value: 'name',
     },
     {
     text: 'User name',
     align: 'left',
-    value: 'User name',
+    value: 'username',
     },
     {
     text: 'EMail',
     align: 'left',
-    value: 'EMail',
+    value: 'email',
     },
 +    {
-+    text: 'Actions',
-+    align: 'left',
-+    value: 'Actions',
++      text: 'Actions',
++      align: 'center',
++      sortable: false,
++      value: 'id',
 +    },
 ```
 
@@ -176,7 +177,7 @@ npm run serve
 _./src/views/EditUser.vue_
 
 ```javascript
-<template type="ts">
+<template>
   <div class="home">
     <h3>Hello from edit user page</h3>
   </div>
@@ -194,22 +195,12 @@ export default class EditUser extends Vue {
 
 - Let's update onEditUser to navigate to that page.
 
-- Add the router import
-
-_./src/components/users-table.vue_
-
-```diff
-<script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-+ import router from '../router';
-```
-
 _./src/components/users-table.vue_
 
 ```diff
 public onEditUser(userId : number)  {
 -  console.log('You clicked on edit user: ', userId);
-+  router.push({name: 'user'});
++  this.$router.push({name: 'user'});
 }
 ```
 
@@ -267,7 +258,7 @@ _./src/components/users-table.vue_
 ```diff
   public onEditUser(userId : number)  {
 -    router.push({name: 'user'});
-+    router.push({name: 'user', params: { id: userId.toString() }});
++    this.$router.push({name: 'user', params: { id: userId.toString() }});
 
   }
 ```
@@ -278,11 +269,11 @@ pass it down to the component.
 _./src/components/users-table.vue_
 
 ```diff
-<template type="ts">
+<template>
   <div class="home">
     <h3>Hello from home page</h3>
--    <UsersTable :users="users"/>
-+    <UsersTable :users="users" @onEditUser="onEditUser"/>
+-    <users-table :users="users"/>
++    <users-table :users="users" @on-edit-user="onEditUser"/>
   </div>
 </template>
 ```
@@ -290,7 +281,6 @@ _./src/components/users-table.vue_
 import { Component, Vue } from 'vue-property-decorator';
 import UsersTable from '@/components/users-table.vue';
 import { fetchUsers } from '@/rest-api';
-+ import router from '../router';
 
 export default class Home extends Vue {
   public users = [];
@@ -302,7 +292,7 @@ export default class Home extends Vue {
   }
 
 +  public onEditUser(userId: number)  {
-+    router.push({name: 'user', params: { id: userId.toString() }});
++    this.$router.push({name: 'user', params: { id: userId.toString() }});
 +  }
 }
 ```
@@ -316,7 +306,7 @@ _./src/components/users-table.vue_
   ];
 
   public onEditUser(userId: number)  {
--    router.push({name: 'user', params: { id: userId.toString() }});
+-    this.$router.push({name: 'user', params: { id: userId.toString() }});
 +   this.$emit('onEditUser', userId);
   }
 }
