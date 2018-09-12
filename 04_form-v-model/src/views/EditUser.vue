@@ -1,7 +1,7 @@
-<template type="ts">
+<template>
   <div class="home">
     {{user.name}}
-    <UserForm v-model="user" @onSave="onSave"/>
+    <UserForm v-model="editingUser" @onSave="onSave"/>
   </div>
 </template>
 
@@ -18,16 +18,18 @@ import UserForm from '@/components/user-form.vue';
 export default class EditUser extends Vue {
   @Prop() public id!: string;
   public user = createDefaultUser();
+  public editingUser: User = this.user;
 
   public created() {
     fetchUser(+this.id).then((user) => {
       this.user = user;
+      this.editingUser = JSON.parse(JSON.stringify(this.user));
     });
   }
 
-  public onSave(editingUser: User)  {
-    console.log(editingUser);
-    this.user = editingUser;
+
+  public onSave()  {
+    this.user = this.editingUser;
 
     console.log('**** Save operation');
     console.log(JSON.stringify(this.user));

@@ -5,13 +5,13 @@
       v-model="value.name"
     />
     <v-text-field
-        v-model="value.username"
-        label="Nickname"
-        />
+      v-model="value.username"
+      label="Nickname"
+    />
     <v-text-field
       v-model="value.email"
-        label="EMail"
-        />
+      label="EMail"
+    />
     <v-btn
       @click="onSave"
     >
@@ -27,10 +27,20 @@ import _ from 'lodash';
 
 @Component
 export default class UserForm extends Vue {
-  @Prop() public value!: any
+  $refs!: {
+    name: HTMLInputElement;
+    username: HTMLInputElement;
+    email: HTMLInputElement;
+  };
+
+  @Prop() public value!: any;
+
+  // public editUser: User = createDefaultUser();
 
   public onSave() {    
-    this.$router.push('/');
+    this.$emit('onSave');
   }
+
+
 }
 </script>
