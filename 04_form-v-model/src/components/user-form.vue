@@ -27,20 +27,11 @@ import _ from 'lodash';
 
 @Component
 export default class UserForm extends Vue {
-  $refs!: {
-    name: HTMLInputElement;
-    username: HTMLInputElement;
-    email: HTMLInputElement;
-  };
-
   @Prop() public value!: any;
-
-  // public editUser: User = createDefaultUser();
 
   public onSave() {    
     this.$emit('onSave');
   }
-
 
 }
 </script>

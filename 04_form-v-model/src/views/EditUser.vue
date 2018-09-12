@@ -17,6 +17,7 @@ import UserForm from '@/components/user-form.vue';
 })
 export default class EditUser extends Vue {
   @Prop() public id!: string;
+  
   public user = createDefaultUser();
   public editingUser: User = this.user;
 
