@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     {{user.name}}
-    <UserForm v-model="editingUser" @onSave="onSave"/>
+    <UserForm :user="user" @onSave="onSave"/>
   </div>
 </template>
 
@@ -11,31 +11,26 @@ import { User, createDefaultUser, fetchUser} from '@/rest-api';
 import UserForm from '@/components/user-form.vue';
 
 @Component({
-    components: {
+  components: {
     UserForm,
   },
 })
 export default class EditUser extends Vue {
   @Prop() public id!: string;
-  
   public user = createDefaultUser();
-  public editingUser: User = this.user;
 
   public created() {
     fetchUser(+this.id).then((user) => {
       this.user = user;
-      this.editingUser = JSON.parse(JSON.stringify(this.user));
     });
   }
 
-
-  public onSave()  {
-    this.user = this.editingUser;
+  public onSave(value: User): void {
+    this.user = value;
 
     console.log('**** Save operation');
     console.log(JSON.stringify(this.user));
     console.log('****');
   }
-
 }
 </script>
