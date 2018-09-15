@@ -1,7 +1,11 @@
-<template type="ts">
+<template>
   <div class="home">
     {{user.name}}
-    <UserForm :user="user" @onSave="onSave"/>
+    <UserForm
+      :user="user"
+      :user-update="userUpdate"
+      @onSave="onSave"
+    />
   </div>
 </template>
 
@@ -11,7 +15,7 @@ import { User, createDefaultUser, fetchUser} from '@/rest-api';
 import UserForm from '@/components/user-form.vue';
 
 @Component({
-    components: {
+  components: {
     UserForm,
   },
 })
@@ -25,13 +29,17 @@ export default class EditUser extends Vue {
     });
   }
 
-  public onSave(editingUser: User)  {
-    this.user = editingUser;
-
+  public userUpdate(field: string, value: any): void {
+    this.user = {
+      ...this.user,
+      [field]: value,
+    };
+  }
+  
+  public onSave(): void {
     console.log('**** Save operation');
     console.log(JSON.stringify(this.user));
     console.log('****');
   }
-
 }
 </script>
