@@ -41,7 +41,7 @@ export default class UserForm extends Vue {
 }
 ```
 
-- It's time to edit the form that will let us view and returned the editions the _User_ entity data.
+- It's time to update the user-form component, we will use one way data flow. This form let us view, edit the user entity data and pump it back to the parent container.
 
 _./src/components/user-form.vue_
 
@@ -137,4 +137,4 @@ _./src/views/EditUser.vue_
 </template>
 ```
 
-- Now we will test the code by running `npm run serve`
+- Let's give a try to the code: `npm run serve`
