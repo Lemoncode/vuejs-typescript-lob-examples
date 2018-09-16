@@ -29,7 +29,7 @@ export default class EditUser extends Vue {
     });
   }
 
-  public userUpdate(field: string, value: string): void {
+  public userUpdate(field: string, value: any): void {
     this.user = {
       ...this.user,
       [field]: value,
