@@ -4,7 +4,7 @@ In this sample we are going to implement a form to edit a given user with one wa
 
 # Steps
 
-- We will start from previos sample, just copy the sample and execute npm install.
+- We will start from previous sample, just copy the sample and execute npm install.
 
 ```bash
 npm install
@@ -75,6 +75,8 @@ _./src/components/user-form.vue_
   </form>
 </template>
 ```
+
+> There maybe times where you need to listen to a native event in the root element of a given component. For these fases you can use `.native` switch for v-on. Vuetiy's `v-text-field` wraps an input element, we can use `.native`
 
 - Let's implement the callbacks reception in the page container.
 
