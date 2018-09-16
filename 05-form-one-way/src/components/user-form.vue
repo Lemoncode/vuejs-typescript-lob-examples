@@ -1,19 +1,22 @@
-<template type="ts">
+<template>
  <form>
     <v-text-field
-        v-model="editingUser.name"
-        label="Name"
-        />
+      :value="user.name"
+      label="Name"
+      @input.native="userUpdate('name', $event.target.value)"
+    />
     <v-text-field
-        v-model="editingUser.username"
-        label="Nickname"
-        />
+      :value="user.username"
+      label="Nickname"
+      @input.native="userUpdate('username', $event.target.value)"
+    />
     <v-text-field
-        v-model="editingUser.email"
-        label="EMail"
-        />
+      :value="user.email"
+      label="EMail"
+      @input.native="userUpdate('email', $event.target.value)"
+    />
     <v-btn
-      @click="onSave"
+      @click="$emit('onSave')"
     >
       save
     </v-btn>
@@ -21,26 +24,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { User, createDefaultUser } from '@/rest-api';
-import _ from 'lodash';
+import { Vue, Component, Prop, } from 'vue-property-decorator';
+import { User } from '@/rest-api';
 
 @Component({
   components: {},
 })
 export default class UserForm extends Vue {
   @Prop() public user!: User;
-
-  public editingUser: User = createDefaultUser();
-
-  @Watch("user")
-  doUserWatch(newVal: User, oldVal: User) {
-    this.editingUser = _.cloneDeep(newVal);
-  }
-
-
-  public onSave() {
-    this.$emit('onSave', this.editingUser);
-  }
+  @Prop() public userUpdate!: Function;
 }
 </script>
